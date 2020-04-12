@@ -1,0 +1,64 @@
+C#企业级开发技术练习6答题卡
+
+班级：计算机信息管理1班     
+姓名：李初阳     
+学号：20190307123     
+
+注：请将答案放置在序号下方。*/
+
+（一）using System;
+namespace 练习1
+{
+    class Teacher<T>
+    {
+        public void field(string fieldName, T t)
+        {
+            Console.WriteLine($"{fieldName}:{t},类型是{t.GetType().Name}");
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Teacher<string> T1 = new Teacher<string>();
+            T1.field("姓名", "zhao");
+            Teacher<decimal> T2 = new Teacher<decimal>();
+            T2.field("工资", 8202.34M);
+            Teacher<Boolean> T3 = new Teacher<Boolean>();
+            T3.field("编制", false);
+            Teacher<Single> T4 = new Teacher<Single>();
+            T4.field("评价", 90.23f);
+            Teacher<DateTime> T5 = new Teacher<DateTime>();
+            T5.field("工作日期", DateTime.Parse("2001/8/31"));
+        }
+    }
+}
+
+
+（二）using System;
+namespace 练习1
+{
+    interface IPay<P, Q>
+    {
+        void Log(P x, Q y);
+    }
+    class Employee<T> : IPay<string, T>
+    {
+        public void Log(string name, T pay) =>
+            Console.WriteLine($"{name}:{pay},类型是{pay.GetType().Name}");
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Employee<Int64> e1 = new Employee<Int64>();
+            e1.Log( "年终奖",30000);
+            Employee<decimal> e2 = new Employee<decimal>();
+            e2.Log("核增绩效", 54321.67M);
+        }
+    }
+}
+
+
+
+
